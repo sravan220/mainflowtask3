@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Webpage</title>
+  <style>body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+#myForm {
+  width: 50%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#myForm label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#myForm input[type="text"],
+#myForm input[type="email"] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#myForm input[type="submit"] {
+  width: 100%;
+  height: 40px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #00698f;
+}</style></head>
+<body>
+  <h1>Interactive Webpage</h1>
+  <form id="myForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+  <div id="result"></div>
+
+  <script>const form = document.getElementById('myForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const resultDiv = document.getElementById('result');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+
+  if (name === '' || email === '') {
+    resultDiv.innerHTML = 'Please fill in all fields.';
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    resultDiv.innerHTML = 'Invalid email address.';
+    return;
+  }
+
+  resultDiv.innerHTML = `Hello, ${name}! Your email address is ${email}.`;
+});
+
+function validateEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}</script>
+</body>
+</html>
